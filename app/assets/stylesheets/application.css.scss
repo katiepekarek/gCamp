@@ -15,5 +15,24 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
  body { padding-top: 70px; padding-bottom: 70px }
+
  .col-md-4 img { display:block; margin:auto; }
+
+ /* footer */
+ footer {
+   margin-top: 45px;
+   padding-top: 10px;
+   border-top: 1px solid #eaeaea;
+ }
+
+ footer ul {
+   float: right;
+   list-style: none;
+ }
+
+ footer ul li {
+   float: left;
+   margin-left: 0px;
+ }

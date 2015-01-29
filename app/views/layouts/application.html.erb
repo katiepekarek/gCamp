@@ -7,24 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">gCamp</a>
+<nav class='navbar navbar-inverse navbar-fixed-top'>
+  <div class='container'>
+    <a class='navbar-brand' href=''#''>gCamp</a>
   </div>
 </div>
 </nav>
 
 <%= yield %>
 
-<div class="container">
-
-  <div class="page-header"> </div>
-
-  <%= link_to 'About |', about_path %>
-  <%= link_to 'Terms ', terms_path %>
-
-
-</div>
+<footer class= 'footer'>
+  <div class= 'container'>
+    <%= link_to 'About |', about_path %>
+    <%= link_to 'Terms ', terms_path %>
+    <ul>
+      <li> <%= link_to image_tag('linked_in.jpg', class: 'navbar-brand'), 'https://www.linkedin.com/pub/katie-pekarek/19/62/771' %></li>
+      <li> <%= link_to image_tag('GitHub.png', class: 'navbar-brand'), 'https://github.com/katiepekarek/' %></li>
+      <li> <%= link_to image_tag('Twitter.png', class: 'navbar-brand'), 'https://twitter.com/' %></li>
+      <li> <%= link_to image_tag('galvanize.png', class: 'navbar-brand'), 'https://students.gschool.it/cohorts/8/students/286' %></li>
+    </ul>
+  </div>
+</footer>
 
 </body>
 </html>
