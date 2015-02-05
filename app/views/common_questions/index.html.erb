@@ -1,0 +1,25 @@
+
+<div class="page-header">
+  <h1>Frequently Asked Questions</h1>
+</div>
+
+<p>
+  <ul>
+    <% @questions.each do |question| %>
+    <a><li><%= question.question  %> </li></a>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <% @questions.each do |question| %>
+
+    <div>
+      <p><h3><%= question.question  %></h3></p>
+      <p><%= question.answer  %></p>
+      <a href="#Top">Top</a>
+    </div>
+
+    <br/>
+  <% end %>
+</p>
