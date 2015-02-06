@@ -6,7 +6,7 @@
 <p>
   <ul>
     <% @questions.each do |question| %>
-    <a><li><%= question.question  %> </li></a>
+    <li><a href="#<%=question.slug%>"><%= question.question  %></a></li>
     <% end %>
   </ul>
 </p>
@@ -15,6 +15,7 @@
   <% @questions.each do |question| %>
 
     <div>
+      <a name="<%=question.slug%>"></a>
       <p><h3><%= question.question  %></h3></p>
       <p><%= question.answer  %></p>
       <a href="#Top">Top</a>
