@@ -7,6 +7,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -14,7 +15,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params[:id])
+    @task = Task.new(task_params)
 
     if @task.save
       flash[:notice] = "Task was successfully created."
