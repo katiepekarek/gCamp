@@ -1,22 +1,28 @@
 <p><h1>Listing Tasks</h1></p>
 
-<p><h3>Description</h3></p>
+<div class= 'page header'
+Description</h3></p>
 
+<table class= 'table'>
+<tbody>
 <% @tasks.each do |task| %>
 
-  <div class='form-inline'>
+  <div class= 'form-inline container'>
+    <div class= 'row'>
+    </tr>
+        <td><%= task.description %>  </td>
 
-     <%= task.description %>
-
-      <div class= col-md-offset-10>
-        <%= link_to 'Show', task_path(task) %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task_path(task), method: :delete %>
+      <div class= col-md-4>
+        <td>  <%= link_to 'Show', task_path(task) %>  </td>
+        <td>  <%= link_to 'Edit', edit_task_path(task) %>  </td>
+        <td>  <%= link_to 'Destroy', task_path(task), method: :delete %>  </td>
       </div>
-
+    </tr>
+    </div>
   </div>
-
-<% end %>
+  <% end %>
+</tbody>
+</table>
 
 <div>
   <%= link_to 'New Task', new_task_path %>
