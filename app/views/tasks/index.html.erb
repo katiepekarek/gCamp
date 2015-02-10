@@ -1,13 +1,23 @@
-<div>
-  <%= link_to 'New Blog Post Entry', new_blog_post_path %>
-</div>
-<hr>
+<p><h1>Listing Tasks</h1></p>
 
-<% @blog_posts.each do |blog_post| %>
+<p><h3>Description</h3></p>
 
-<div>
-  <p><%= link_to blog_post.title, blog_post_path(blog_post) %></p>
-  <p><%= blog_post.author %></p>
-</div>
-<hr>
+<% @tasks.each do |task| %>
+
+  <div class='form-inline'>
+
+     <%= task.description %>
+
+      <div class= col-md-offset-10>
+        <%= link_to 'Show', task_path(task) %>
+        <%= link_to 'Edit', edit_task_path(task) %>
+        <%= link_to 'Destroy', task_path(task), method: :delete %>
+      </div>
+
+  </div>
+
 <% end %>
+
+<div>
+  <%= link_to 'New Task', new_task_path %>
+</div>
