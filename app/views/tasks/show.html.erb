@@ -9,7 +9,3 @@
 
 <p> Description: <%= @task.description %></p>
 <br/>
-
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Delete', task_path(@task), method: :delete, data: {confirm: 'Are you sure you want to delete?'} %>
