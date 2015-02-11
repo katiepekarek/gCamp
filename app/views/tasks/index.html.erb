@@ -1,5 +1,5 @@
 <div class= 'page-header row container'>
-  <p><h1>Tasks <%= link_to 'New Task', new_task_path(@task), class:"btn btn-primary pull-right" %></h1></p>
+  <p><h1>Tasks <%= link_to 'New Task', new_task_path(@task), class:"btn btn-info pull-right" %></h1></p>
 </div>
 
 <table class= 'table'>
@@ -15,7 +15,7 @@
     <tr>
       <td><%= link_to task.description, task_path(task) %>  </td>
         <td class= "text-right">
-          <%= link_to 'Edit', edit_task_path(task), class:"btn btn-primary" %>
+          <%= link_to 'Edit', edit_task_path(task), class:"btn btn-info" %>
           <%= link_to 'Delete', task_path(task), method: :delete, class:"btn btn-danger"%>
         </td>
     </tr>
