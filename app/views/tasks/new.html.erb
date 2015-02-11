@@ -1,6 +1,11 @@
-<div class= 'peage-header'>
-<p><h1>New Task</h1></p>
+<div class= 'page-header'>
+  <h1>New Task</h1>
 </div>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Task', tasks_path %></a></li>
+  <li class="active">New Task</li>
+</ol>
 
 <%= render partial: "form", locals: {name_of_button: "Create"} %>
 

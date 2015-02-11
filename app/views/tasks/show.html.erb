@@ -1,3 +1,11 @@
+<div class= 'page-header'>
+  <h1>Finish Homework <%= link_to 'Edit', edit_task_path(@task), class:"btn btn-info pull-right" %></h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Task', tasks_path %></a></li>
+  <li class="active">Finish Homework</li>
+</ol>
 
 <p> Description: <%= @task.description %></p>
 <br/>
