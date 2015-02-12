@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get '/about', to:'about#index'
   get '/faq', to:'common_questions#index'
   resources :tasks
-  post 'tasks/complete', to:'tasks#complete' 
 
 end
   # The priority is based upon order of creation: first created -> highest priority.
