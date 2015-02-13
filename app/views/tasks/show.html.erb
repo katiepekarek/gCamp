@@ -14,9 +14,14 @@
   <li class="active"><%= link_to @task.description %></li>
 </ol>
 
+<p>
+  <% if @task.completed %>
+    <s><%= @task.description %></s>
+  <% else %>
+    <%= @task.description %>
+  <% end %>
+</p>
 
-<% if @task.completed %>
-  <s><%= @task.description %></s>
-<% else %>
-  <%= @task.description %>
-<% end %>
+<p>
+  <strong><%= @task.due_date %></strong>
+</p>
