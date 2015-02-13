@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <td><h3>Description</h3></td>
-      <td><h3>Due Date</h3></td>
+      <td><h3>Due On</h3></td>
     </tr>
   </thead>
 
@@ -15,13 +15,16 @@
     <tr>
       <% if task.completed %>
         <td><s><%= link_to task.description, task_path(task) %></s></td>
-
       <% else %>
         <td><%= link_to task.description, task_path(task) %></td>
-
       <% end %>
 
-      <td><%= task.due_date %></td>
+      <% if task.due_date %>
+        <td><%= task.due_date.strftime( "%m/%d/%y" ) %></td>
+      <% else %>
+        <td><%= task.due_date %></td>
+      <% end %>
+
 
         <td class= "text-right">
           <%= link_to 'Edit', edit_task_path(task), class:"btn btn-info" %>
