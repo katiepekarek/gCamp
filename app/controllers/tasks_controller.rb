@@ -28,6 +28,9 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
+
+
   end
 
   def update
@@ -36,7 +39,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       flash[:success] = "Task was successfully updated."
 
-      redirect_to tasks_path
+      redirect_to task_path
 
     else
       render :edit
