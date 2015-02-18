@@ -2,11 +2,6 @@
   <h1>Edit User</h1>
 </div>
 
-<ol class="breadcrumb">
-  <li><%= link_to 'User', users_path %></a></li>
-  <li><%= link_to "#{@user.first_name} #{@user.last_name}", user_path(@user) %></li>
-  <li class="active">Edit</li>
-</ol>
 
 <%= render partial: 'form', locals: {name_of_button: "Update"} %>
 
