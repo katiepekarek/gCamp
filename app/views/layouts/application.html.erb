@@ -17,7 +17,7 @@
 
 <div class= 'container'>
   <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}", class: 'alert alert-success' %>
+  <%= content_tag :div, msg, :id => "flash_#{name}", class: 'alert alert-success text-center' %>
   <% end %>
 </div>
 
