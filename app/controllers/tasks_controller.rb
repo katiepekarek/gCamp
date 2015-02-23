@@ -18,7 +18,9 @@ class TasksController < ApplicationController
     if @task.save
       flash[:success] = "Task was successfully created."
 
-      redirect_to task_path
+      redirect_to task_path(@task)
+    else
+      render :new
     end
   end
 
@@ -32,7 +34,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       flash[:success] = "Task was successfully updated."
 
-      redirect_to task_path
+      redirect_to tasks_path
 
     else
       render :edit
