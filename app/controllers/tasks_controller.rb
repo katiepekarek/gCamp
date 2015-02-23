@@ -1,6 +1,4 @@
 class TasksController < ApplicationController
-  respond_to :html, :xml, :js
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -20,17 +18,12 @@ class TasksController < ApplicationController
     if @task.save
       flash[:success] = "Task was successfully created."
 
-      respond_with(@task) do |format|
-      format.html { render }
-      end
-
+      redirect_to task_path
     end
   end
 
   def edit
     @task = Task.find(params[:id])
-
-
   end
 
   def update
@@ -47,16 +40,12 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    Task.find(params[:id]).destroy
 
     redirect_to tasks_path
   end
 
   private
-
-  def set_task
-    @task = Task.find(params[:id])
-  end
 
   def task_params
     params.require(:task).permit(:description, :completed, :due_date)
