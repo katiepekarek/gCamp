@@ -8,11 +8,13 @@ class ProjectsController <ApplicationController
   end
 
   def create
-    project = Project.new(project_params)
-    if project.save
+    @project = Project.new(project_params)
+    if @project.save
       flash[:success] = 'Project was successfully created'
 
-      redirect_to project_path(project)
+      redirect_to project_path(@project)
+    else
+      render :new
     end
   end
 
@@ -29,19 +31,18 @@ class ProjectsController <ApplicationController
     if @project.update(project_params)
       flash[:success] = 'Project was successfully updated'
 
-      redirect_to project_path
+      redirect_to project_path(@project)
     else
       render :edit
     end
   end
 
   def destroy
-    project = Project.find(params[:id])
-    if project.destroy
+    Project.find(params[:id]).destroy
       flash[:delete] = 'Project was successfully deleted'
 
       redirect_to projects_path
-    end
+
   end
 
   private
