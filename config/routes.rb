@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
+  get '/sign-up' => 'registrations#new', as: :signup
+  post '/sign-up' => 'registrations#create'
+  get '/sign-in' => 'authentication#new', as: :signin
+  post '/sign-in' => 'authentication#create'
+  get '/sign-out' => 'authentication#destroy', as: :signout
   get '/terms', to:'terms#index'
   get '/about', to:'about#index'
   get '/faq', to:'common_questions#index'

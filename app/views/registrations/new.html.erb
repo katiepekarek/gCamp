@@ -1,0 +1,54 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user, url: signup_path do |f| %>
+
+  <% if @user.errors.present? %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <div class= 'well align-center'>
+    <div class= 'form-group'>
+      <%= f.label :first_name, class: 'col-sm-2 control-label' %>
+      <div class= 'col-sm-4'>
+        <%= f.text_field :first_name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class= 'form-group'>
+      <%= f.label :last_name, class: 'col-sm-2 control-label'  %>
+      <div class= 'col-sm-4'>
+        <%= f.text_field :last_name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class= 'form-group'>
+      <%= f.label :email, class: 'col-sm-2 control-label' %>
+      <div class= 'col-sm-4'>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class= 'form-group'>
+      <%= f.label :password, class: 'col-sm-2 control-label' %>
+      <div class= 'col-sm-4'>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class= 'form-group'>
+      <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+      <div class= 'col-sm-4'>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.submit "Sign up" %>
+    </div>
+  </div
+
+<% end %>
