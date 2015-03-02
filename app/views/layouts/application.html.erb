@@ -10,18 +10,17 @@
 <div class='container'>
   <nav class='navbar navbar-inverse navbar-fixed-top'>
     <div class='container'>
-      <a class='navbar-brand' href=''#''>gCamp</a>
+      <a class='navbar-brand' href='#'>gCamp</a>
+      <div class= 'pull-right'>
+        <% if current_user %>
+        <%= link_to "Sign Out", signout_path, class: 'navbar-text' %>
+        <% else %>
+        <%= link_to "Sign Up", signup_path, class: 'navbar-text' %>
+        <%= link_to "Sign In", signin_path, class: 'navbar-text' %>
+        <% end %>
+      </div>
     </div>
   </nav>
-</div>
-
-<div>
-  <% if current_user %>
-  <%= link_to "Sign Out", signout_path %>
-  <% else %>
-  <%= link_to "Sign Up", signup_path %>
-  <%= link_to "Sign In", signin_path %>
-  <% end %>
 </div>
 
 <div class= 'container'>
