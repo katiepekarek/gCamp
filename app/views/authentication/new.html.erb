@@ -1,29 +1,32 @@
-<h1>Sign In</h1>
+<%= form_for signin_path do |f| %>
 
-  <%= form_tag signin_path do |f| %>
-
-    <% if @sign_in_error %>
+  <% if @sign_in_error %>
     <p>
       <%= @sign_in_error %>
     </p>
   <% end %>
 
-  <div>
-    <%= label_tag :email %>
-  </div>
-  <div>
-    <%= email_field_tag :email %>
-  </div>
+  <div class= 'row'>
+    <div class= 'col-sm-6 col-md-offset-3'>
+      <div class= 'well'>
+        <div class= 'page-header'>
+          <h3>Sign into gCamp</h3>
+        </div>
 
-  <div>
-    <%= label_tag :password %>
-  </div>
-  <div>
-    <%= password_field_tag :password %>
-  </div>
+        <div class= 'form-group'>
+          <%= f.label :email, class: 'control-label' %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
 
-  <div>
-    <%= submit_tag "Sign in" %>
-  </div>
+        <div class= 'form-group'>
+          <%= f.label :password, class: 'control-label' %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
 
+        <div>
+          <%= f.submit "Sign in", class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
