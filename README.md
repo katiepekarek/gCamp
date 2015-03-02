@@ -1,4 +1,4 @@
-[![Travis build status](https://travis-ci.org/katiepekarek/gCamp.svg)]
+![Travis build status](https://travis-ci.org/katiepekarek/gCamp.svg)
 
 == README
 
