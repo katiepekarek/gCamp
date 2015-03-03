@@ -1,4 +1,4 @@
-<%= form_for signin_path do |f| %>
+<%= form_tag signin_path do %>
 
   <% if @sign_in_error %>
     <p>
@@ -14,17 +14,17 @@
         </div>
 
         <div class= 'form-group'>
-          <%= f.label :email, class: 'control-label' %>
-          <%= f.email_field :email, class: 'form-control' %>
+          <%= label_tag :email, 'Email', class: 'control-label' %>
+          <%= email_field_tag :email, '', class: 'form-control' %>
         </div>
 
         <div class= 'form-group'>
-          <%= f.label :password, class: 'control-label' %>
-          <%= f.password_field :password, class: 'form-control' %>
+          <%= label_tag :password, 'Password', class: 'control-label' %>
+          <%= password_field_tag :password, '', class: 'form-control' %>
         </div>
 
         <div>
-          <%= f.submit "Sign in", class: 'btn btn-default' %>
+          <%= submit_tag "Sign in", class: 'btn btn-default' %>
         </div>
       </div>
     </div>
