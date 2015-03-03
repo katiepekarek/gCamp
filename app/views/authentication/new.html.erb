@@ -1,17 +1,15 @@
 <%= form_tag signin_path do %>
 
-  <% if @sign_in_error %>
-    <p>
-      <%= @sign_in_error %>
-    </p>
-  <% end %>
-
   <div class= 'row'>
     <div class= 'col-sm-6 col-md-offset-3'>
       <div class= 'well'>
         <div class= 'page-header'>
           <h3>Sign into gCamp</h3>
         </div>
+
+        <% if @sign_in_error %>
+          <p class= "text-danger"> <%= @sign_in_error %> </p>
+        <% end %>
 
         <div class= 'form-group'>
           <%= label_tag :email, 'Email', class: 'control-label' %>
