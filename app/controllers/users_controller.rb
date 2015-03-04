@@ -1,4 +1,5 @@
 class UsersController <ApplicationController
+  before_action :authorize
 
   def index
     @users = User.all
@@ -39,7 +40,7 @@ class UsersController <ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:delete] = "User was successfully deleted."
+      flash[:success] = "User was successfully deleted."
 
       redirect_to users_path
     end
@@ -48,7 +49,7 @@ class UsersController <ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
 
 end

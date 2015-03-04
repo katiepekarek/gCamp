@@ -1,4 +1,6 @@
 class ProjectsController <ApplicationController
+  before_action :authorize
+
   def index
     @projects = Project.all
   end
@@ -39,7 +41,7 @@ class ProjectsController <ApplicationController
 
   def destroy
     Project.find(params[:id]).destroy
-      flash[:delete] = 'Project was successfully deleted'
+      flash[:success] = 'Project was successfully deleted'
 
       redirect_to projects_path
 

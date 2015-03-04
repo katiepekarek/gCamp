@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  def authorize
+    unless current_user
+      flash[:danger] = 'You must sign in'
+      redirect_to signin_path
+    end
+  end
 end
