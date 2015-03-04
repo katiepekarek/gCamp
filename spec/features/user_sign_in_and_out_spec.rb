@@ -11,6 +11,8 @@ feature 'Existing User signin flow' do
     click_link 'Sign In'
     expect(current_path).to eq '/sign-in'
     expect(page).to have_content 'Sign into gCamp'
+    click_button 'Sign in'
+    expect(page).to have_content 'Email / Password combination is invalid'
 
     fill_in 'Email', with: user.email
     fill_in "Password", with: '1234'
