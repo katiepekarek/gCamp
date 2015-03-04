@@ -16,6 +16,8 @@ feature 'Existing users can CRUD Projects' do
     expect(page).to have_content 'Charles Barkley'
     click_link 'Projects'
     click_link 'New Project'
+    click_button 'Create Project'
+    expect(page).to have_content 'Name can\'t be blank'
 
     fill_in :project_name, with: 'Find Fountain of Youth'
     click_button 'Create Project'

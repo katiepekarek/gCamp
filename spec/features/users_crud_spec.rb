@@ -18,6 +18,8 @@ feature 'users can CRUD Existing Users' do
     expect(page).to have_content 'Charles Barkley'
     click_link 'Users'
     click_link 'New User'
+    click_button 'Create User'
+    expect(page).to have_content 'First name can\'t be blank'
     fill_in :user_first_name, with: 'Katie'
     fill_in :user_last_name, with: 'Couric'
     fill_in :user_email, with: 'former_host@todayshow.com'
