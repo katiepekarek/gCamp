@@ -8,6 +8,11 @@ feature 'User signup flow' do
     click_link 'Sign Up'
     expect(current_path).to eq '/sign-up'
     expect(page).to have_content 'Sign up for gCamp!'
+    click_button 'Sign up'
+    expect(page).to have_content 'First name can\'t be blank'
+    expect(page).to have_content 'Last name can\'t be blank'
+    expect(page).to have_content 'Email can\'t be blank'
+    expect(page).to have_content 'Password can\'t be blank'
 
     fill_in :user_first_name, with: 'Random'
     fill_in :user_last_name, with: 'Person'
