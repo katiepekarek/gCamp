@@ -37,11 +37,12 @@
     </div>
   </div>
 
-<div class= 'form-group'>
-  <div class= 'col-sm-offset-2 col-sm-10'>
-    <%= f.submit "#{name_of_button} User", class: 'btn btn-primary' %>
-    <%= f.submit "Cancel", class: 'btn btn-default' %>
-  </div>
-</div>
+  <div class= 'form-group'>
+    <div class= 'col-sm-offset-2 col-sm-10'>
+      <%= f.submit "#{name_of_button} User", class: 'btn btn-primary' %>
 
 <%end%>
+
+      <%= link_to "Cancel", users_path, class: 'btn btn-default' %>
+    </div>
+  </div>
