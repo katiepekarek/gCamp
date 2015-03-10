@@ -2,6 +2,12 @@
   <p><h1><%= "Tasks for #{@project.name}" %> <%= link_to 'New Task', new_project_task_path(@project), class:"btn btn-info pull-right" %></h1></p>
 </div>
 
+<ol class="breadcrumb">
+  <li><%= link_to 'Projects', projects_path %></a></li>
+  <li><%= link_to "#{@project.name}", project_path(@project) %></a></li>
+  <li class="active">Tasks</li>
+</ol>
+
 <table class= 'table'>
   <thead>
     <tr>

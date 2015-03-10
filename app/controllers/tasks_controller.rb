@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id])
-    @task = Tasks.new
+    @task = @project.tasks.new
   end
 
   def create
@@ -35,6 +35,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
 
     if @task.update(task_params)
@@ -48,6 +49,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     Task.find(params[:id]).destroy
     flash[:success] = "Task was successfully deleted."
     redirect_to project_tasks_path(@project)

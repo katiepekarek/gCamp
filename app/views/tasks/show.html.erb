@@ -5,12 +5,14 @@
     <% else %>
       <%= @task.description %>
     <% end %>
-    <%= link_to 'Edit', edit_task_path(@task), class:"btn btn-info pull-right" %>
+    <%= link_to 'Edit', edit_project_task_path(@project, @task), class:"btn btn-info pull-right" %>
   </h1>
 </div>
 
 <ol class="breadcrumb">
-  <li><%= link_to 'Task', tasks_path %></a></li>
+  <li><%= link_to 'Projects', projects_path %></a></li>
+  <li><%= link_to "#{@project.name}", project_path(@project) %></a></li>
+  <li><%= link_to 'Task', project_tasks_path %></a></li>
   <li class="active"><%= @task.description %></li>
 </ol>
 
