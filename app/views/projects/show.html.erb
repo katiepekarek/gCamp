@@ -14,4 +14,4 @@
   <li class="active"><%= @project.name %></li>
 </ol>
 
-<%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project.tasks) %>
+<%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %>
