@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   get '/terms', to:'terms#index'
   get '/about', to:'about#index'
   get '/faq', to:'common_questions#index'
-  resources :tasks
   resources :users
-  resources :projects
-
+  resources :projects do
+    resources :tasks
+  end
 end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

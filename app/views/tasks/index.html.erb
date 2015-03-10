@@ -1,5 +1,5 @@
 <div class= 'page-header'>
-  <p><h1>Tasks <%= link_to 'New Task', new_task_path(@task), class:"btn btn-info pull-right" %></h1></p>
+  <p><h1><%= "Tasks for #{@project.name}" %> <%= link_to 'New Task', new_project_task_path(@project), class:"btn btn-info pull-right" %></h1></p>
 </div>
 
 <table class= 'table'>
@@ -14,9 +14,9 @@
     <% @tasks.each do |task| %>
     <tr>
       <% if task.completed %>
-        <td><s><%= link_to task.description, task_path(task) %></s></td>
+        <td><s><%= link_to task.description, project_task_path(@project, task) %></s></td>
       <% else %>
-        <td><%= link_to task.description, task_path(task) %></td>
+        <td><%= link_to task.description, project_task_path(@project, task) %></td>
       <% end %>
 
       <% if task.due_date %>
@@ -27,8 +27,8 @@
 
 
         <td class= "text-right">
-          <%= link_to 'Edit', edit_task_path(task), class:"btn btn-info" %>
-          <%= link_to 'Delete', task_path(task), method: :delete, class:"btn btn-danger"%>
+          <%= link_to 'Edit', edit_project_task_path(@project, task), class:"btn btn-info" %>
+          <%= link_to 'Delete', project_task_path(@project, task), method: :delete, class:"btn btn-danger"%>
         </td>
         </tr>
     <% end %>

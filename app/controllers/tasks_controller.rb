@@ -2,40 +2,45 @@ class TasksController < ApplicationController
   before_action :authorize
 
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   def show
+    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
   end
 
   def new
-    @task = Task.new
+    @project = Project.find(params[:project_id])
+    @task = Tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.new(task_params)
 
     if @task.save
       flash[:success] = "Task was successfully created."
 
-      redirect_to task_path(@task)
+      redirect_to project_tasks_path(@project, @task)
     else
       render :new
     end
   end
 
   def edit
+    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
 
     if @task.update(task_params)
       flash[:success] = "Task was successfully updated."
 
-      redirect_to tasks_path
+      redirect_to project_tasks_path(@project, @task)
 
     else
       render :edit
@@ -45,7 +50,7 @@ class TasksController < ApplicationController
   def destroy
     Task.find(params[:id]).destroy
     flash[:success] = "Task was successfully deleted."
-    redirect_to tasks_path
+    redirect_to project_tasks_path(@project)
   end
 
   private
