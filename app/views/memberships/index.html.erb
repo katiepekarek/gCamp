@@ -26,8 +26,8 @@
 <div class= "row col-sm-10">
   <table class= "table">
     <% @project.memberships.each do |membership| %>
-      <%if membership.id.present? && membership.user_id.present? %>
-        <%= form_for [@project, @membership], html: {class: "form-inline"} do |f| %>
+      <%if membership.id && membership.user.present? %>
+        <%= form_for [@project, membership], html: {class: "form-inline"} do |f| %>
           <tbody>
             <tr>
               <td><%= link_to membership.user.full_name, user_path(membership.user) %></td>

@@ -11,7 +11,7 @@ class MembershipsController < ApplicationController
      #@membership = Membership.new(membership_params.merge(project_id: params[:project_id]))
     if @membership.save
       flash[:success] = "#{@membership.user.full_name} was successfully added."
-      redirect_to project_memberships_path(@project.id)
+      redirect_to project_memberships_path(@project)
     else
       render :index
     end
@@ -21,7 +21,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     if @membership.update(membership_params)
       flash[:success] = "#{@membership.user.full_name} was successfully updated."
-      redirect_to project_memberships_path(@project.id)
+      redirect_to project_memberships_path(@project)
     else
       render :index
     end
@@ -31,7 +31,7 @@ class MembershipsController < ApplicationController
     membership = Membership.find(params[:id])
     membership.destroy
     flash[:success] = "#{membership.user.full_name} was successfully removed"
-    redirect_to project_memberships_path(@project.id)
+    redirect_to project_memberships_path(@project)
   end
 
   private
@@ -43,8 +43,5 @@ class MembershipsController < ApplicationController
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)
   end
-
-
-
-
+  
 end
