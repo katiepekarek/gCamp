@@ -1,0 +1,43 @@
+<div class= 'page-header'>
+  <p><h1><%= "#{@project.name}: Manage Members" %></h1></p>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Projects', projects_path %></a></li>
+  <li><%= link_to "#{@project.name}", project_path(@project) %></a></li>
+  <li class="active">Members</li>
+</ol>
+
+<div class= "row">
+  <div class= "col-sm-10">
+    <%= render partial: "shared/errors", locals: {object: @membership} %>
+  </div>
+</div>
+
+<div class= "well col-sm-10">
+  <%= form_for [@project, @membership], html: {class: "form-inline"} do |f| %>
+    <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class:'form-control col-sm-3'}) %>
+
+    <%= f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {}, {class:'form-control'}) %>
+    <%= f.submit "Add New Member", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class= "row col-sm-10">
+  <table class= "table">
+    <% @project.memberships.each do |membership| %>
+      <%if membership.id.present? && membership.user_id.present? %>
+        <%= form_for [@project, @membership], html: {class: "form-inline"} do |f| %>
+          <tbody>
+            <tr>
+              <td><%= link_to membership.user.full_name, user_path(membership.user) %></td>
+              <td><%= f.collection_select(:role, Membership::ROLE, :to_s, :to_s, {prompt: membership.role}, {class:'form-control'}) %></td>
+              <td><%= f.submit "Update", class: "btn btn-primary" %></td>
+              <td><%= link_to "",project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove"%><td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>

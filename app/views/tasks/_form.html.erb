@@ -1,7 +1,8 @@
 <%= form_for ([@project, @task]), html: {class: 'form-horizontal'} do |f| %>
 
-
-  <%= render partial: "shared/errors", locals: {object: @task} %>
+  <div class= "col-sm-offset-2 col-sm-9">
+    <%= render partial: "shared/errors", locals: {object: @task} %>
+  </div>
 
   <div class= 'form-group'>
       <%= f.label :description, class: 'col-sm-2 control-label'%>
