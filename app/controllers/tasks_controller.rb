@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -58,7 +59,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :completed, :due_date)
+    params.require(:task).permit(:description, :completed, :due_date, :project_id)
   end
 
 end
