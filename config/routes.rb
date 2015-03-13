@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   resources :users
   resources :projects do
     resources :tasks
-    resources :memberships
+    resources :memberships, only: [:index, :create, :update, :destroy]
   end
 
   resources :tasks, only: [] do
-    resources :comments
+    resources :comments, only: [:create]
   end
   #map.resources :tasks do |task|
   #  task.resources :comments, :name_prefix => "projects_"
