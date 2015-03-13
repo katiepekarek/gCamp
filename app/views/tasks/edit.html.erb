@@ -5,6 +5,7 @@
 <ol class="breadcrumb">
   <li><%= link_to 'Projects', projects_path %></a></li>
   <li><%= link_to "#{@project.name}" %></li>
+  <li><%= link_to "Tasks", project_tasks_path %></li>
   <li><%= link_to @task.description %></li>
   <li class="active">Edit</li>
 </ol>
