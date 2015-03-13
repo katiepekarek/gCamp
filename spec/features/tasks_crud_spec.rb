@@ -35,7 +35,7 @@ feature 'Existing users CRUD tasks within projects' do
     expect(page).to have_content 'Task was successfully updated.'
     expect(page).to have_content 'Hard Task Edited'
 
-    click_link 'Delete'
+    page.find(".glyphicon-remove").click
     expect(page).to have_content "Task was successfully deleted."
 
   end
