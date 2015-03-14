@@ -1,7 +1,6 @@
 class CommentsController <ApplicationController
   before_action :set_task
 
-
   def create
     @comment = Comment.new(comment_params.merge(task_id: params[:task_id]))
     @comment.user_id = current_user.id
@@ -10,10 +9,6 @@ class CommentsController <ApplicationController
     else
       redirect_to project_task_path(@task[:project_id], @task[:id])
     end
-  end
-
-  def edit
-    @comment = Comment.find(params[:id])
   end
 
   private
