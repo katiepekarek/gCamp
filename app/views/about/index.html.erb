@@ -8,7 +8,7 @@
     <div class='col-md-4'>
       <%=image_tag('About Page.jpg', class:'img-responsive')%>
       <p>gCamp is extremely active. Check out our killer stats below!</p>
-      <p><%="#{pluralize(@projects.count, "Project").sub(/d+s/, "")}, #{pluralize(@projects.tasks.count, "Task").sub(/d+s/, "")}, #{pluralize(@projects.membership.count, "Project Member").sub(/d+s/, "")}, #{pluralize(@users.count, "User").sub(/d+s/, "")}, #{pluralize(@tasks.comment.count, "Comment").sub(/d+s/, "")}" %></p>
+      <p><%="#{pluralize(@projects.count, "Project").sub(/d+s/, "")}, #{pluralize(@tasks.count, "Task").sub(/d+s/, "")}, #{pluralize(@memberships.count, "Project Member").sub(/d+s/, "")}, #{pluralize(@users.count, "User").sub(/d+s/, "")}, #{pluralize(@comments.count, "Comment").sub(/d+s/, "")}" %></p>
     </div>
 
     <div class='col-md-8'>
