@@ -1,4 +1,4 @@
-class ProjectsController <ApplicationController
+class ProjectsController <PrivateController
   before_action :authorize
 
   def index

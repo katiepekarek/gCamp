@@ -1,4 +1,4 @@
-class MembershipsController < ApplicationController
+class MembershipsController < PrivateController
   before_action :set_project
 
   def index
@@ -43,5 +43,5 @@ class MembershipsController < ApplicationController
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)
   end
-  
+
 end

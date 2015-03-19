@@ -7,25 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 
-
 <nav class='navbar navbar-inverse navbar-fixed-top'>
   <div class='container'>
     <a class='navbar-brand' href='/'>gCamp</a>
     <div class= 'pull-right'>
       <% if current_user %>
-      <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user), class: 'navbar-text' %>
-      <%= link_to "Sign Out", signout_path, class: 'navbar-text' %>
+        <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user), class: 'navbar-text' %>
+        <%= link_to "Sign Out", signout_path, class: 'navbar-text' %>
       <% else %>
-      <%= link_to "Sign Up", signup_path, class: 'navbar-text' %>
-      <%= link_to "Sign In", signin_path, class: 'navbar-text' %>
+        <%= link_to "Sign Up", signup_path, class: 'navbar-text' %>
+        <%= link_to "Sign In", signin_path, class: 'navbar-text' %>
       <% end %>
     </div>
   </div>
 </nav>
 
-
 <div class= 'container'>
-
   <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}", class: "alert alert-#{name}" %>
   <% end %>
@@ -33,32 +30,30 @@
 
 <body class= 'body'>
   <div class='container'>
-
     <%= yield %>
-
   </div>
 </body>
 
-  <footer class= 'footer'>
-      <div class= 'container'>
-        <% if current_user %>
-        <%= link_to 'About', about_path %> |
-        <%= link_to 'Terms', terms_path %> |
-        <%= link_to 'FAQ', faq_path %> |
-        <%= link_to 'Users', users_path %> |
-        <%= link_to 'Projects ', projects_path %>
-        <% else %>
-        <%= link_to 'About', about_path %> |
-        <%= link_to 'Terms', terms_path %> |
-        <%= link_to 'FAQ', faq_path %>
-        <% end %>
-        <ul>
-          <li> <%= link_to image_tag('linked_in.jpg', class: 'navbar-brand'), 'https://www.linkedin.com/pub/katie-pekarek/19/62/771' %></li>
-          <li> <%= link_to image_tag('GitHub.png', class: 'navbar-brand'), 'https://github.com/katiepekarek/' %></li>
-          <li> <%= link_to image_tag('Twitter.png', class: 'navbar-brand'), 'https://twitter.com/' %></li>
-          <li> <%= link_to image_tag('galvanize.png', class: 'navbar-brand'), 'https://students.gschool.it/cohorts/8/students/286' %></li>
-        </ul>
-      </div>
-    </footer>
+<footer class= 'footer'>
+  <div class= 'container'>
+    <% if current_user %>
+      <%= link_to 'About', about_path %> |
+      <%= link_to 'Terms', terms_path %> |
+      <%= link_to 'FAQ', faq_path %> |
+      <%= link_to 'Users', users_path %> |
+      <%= link_to 'Projects ', projects_path %>
+    <% else %>
+      <%= link_to 'About', about_path %> |
+      <%= link_to 'Terms', terms_path %> |
+      <%= link_to 'FAQ', faq_path %>
+    <% end %>
+    <ul>
+      <li> <%= link_to image_tag('linked_in.jpg', class: 'navbar-brand'), 'https://www.linkedin.com/pub/katie-pekarek/19/62/771' %></li>
+      <li> <%= link_to image_tag('GitHub.png', class: 'navbar-brand'), 'https://github.com/katiepekarek/' %></li>
+      <li> <%= link_to image_tag('Twitter.png', class: 'navbar-brand'), 'https://twitter.com/' %></li>
+      <li> <%= link_to image_tag('galvanize.png', class: 'navbar-brand'), 'https://students.gschool.it/cohorts/8/students/286' %></li>
+    </ul>
+  </div>
+</footer>
 
 </html>
