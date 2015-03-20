@@ -16,7 +16,7 @@
           <%= link_to(raw("Projects" +("<b class= 'caret'></b>")), projects_path, :class => "dropdown-toggle", :data => {:toggle=>"dropdown"}) %>
           <ul class="dropdown-menu" role="menu">
             <% current_user.memberships.each do |membership| %>
-            <li><%= link_to "#{membership.project.name}", project_path(membership) %></li>
+            <li><%= link_to "#{membership.project.name}", project_path(membership.project) %></li>
             </hr>
             <% end %>
             <hr><li><%= link_to "New Project", new_project_path %></li></hr>
