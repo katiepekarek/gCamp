@@ -21,8 +21,8 @@ feature 'User signup flow' do
     fill_in :user_password_confirmation, with: '1234'
     click_button 'Sign up'
 
-    expect(current_path).to eq '/'
-    expect(page).to have_content 'Your life, organized'
+    expect(current_path).to eq '/projects/new'
+    expect(page).to have_content 'New Project'
     expect(page).to have_content 'You have successfully signed up'
   end
 end

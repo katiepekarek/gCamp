@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 feature 'Existing users CRUD tasks within projects' do
-  scenario 'index lists all available cheeses with description, due_date' do
+  scenario 'index lists all available tasks with description, due_date' do
     project = Project.new(name: 'create great wall of china')
     project.save!
 
     sign_in_user
-    expect(current_path).to eq root_path
+    expect(current_path).to eq projects_path
 
-    click_link 'Projects'
     click_link '0'
 
     click_link 'New Task'

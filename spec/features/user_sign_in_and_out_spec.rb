@@ -18,8 +18,8 @@ feature 'Existing User signin flow' do
     fill_in "Password", with: '1234'
     click_button 'Sign in'
 
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Your life, organized'
+    expect(current_path).to eq projects_path
+    expect(page).to have_content 'Projects'
     expect(page).to have_content 'You have successfully signed in'
 
     click_link 'Sign Out'
