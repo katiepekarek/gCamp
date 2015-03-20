@@ -18,8 +18,8 @@
             <% current_user.memberships.each do |membership| %>
             <li><%= link_to "#{membership.project.name}", project_path(membership) %></li>
             </hr>
-            <hr><li><%= link_to "New Project", new_project_path %></li></hr>
             <% end %>
+            <hr><li><%= link_to "New Project", new_project_path %></li></hr>
           </ul>
         </li>
         <li><a href="/users">Users</a></li>
