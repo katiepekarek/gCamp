@@ -13,7 +13,7 @@ class ProjectsController <PrivateController
     @project = Project.new(project_params)
     if @project.save
       flash[:success] = 'Project was successfully created'
-
+      Membership.create(:project_id => @project.id, :user_id => current_user.id, :role => 'owner')
       redirect_to project_path(@project)
     else
       render :new
