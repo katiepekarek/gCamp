@@ -10,13 +10,13 @@
       <th>Tasks</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @projects.each do |project| %>
+    <% current_user.projects.each do |project| %>
     <tr>
       <td><%=link_to project.name, project_path(project)%></td>
       <td><%=link_to project.tasks.count, project_tasks_path(project)%></td>
     </tr>
     <%end%>
   </tbody>
+
 </table>
