@@ -1,6 +1,6 @@
 class ProjectsController <PrivateController
   before_action :authorize
-
+  before_action :member_auth, except: [:new, :create, :index]
   def index
     @projects = Project.all
   end
@@ -51,6 +51,13 @@ class ProjectsController <PrivateController
 
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def member_auth
+    unless current_user.memberships.where(project_id: @project).exists?
+      flash[:danger] = "You do not have access to that project"
+      redirect_to projects_path
+    end
   end
 
 end

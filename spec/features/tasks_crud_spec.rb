@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Existing users CRUD tasks within projects' do
-  scenario 'index lists all available tasks with description, due_date' do
+  xscenario 'index lists all available tasks with description, due_date' do
     project = Project.new(name: 'create great wall of china')
     project.save!
 
