@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def project_member_verify(project)
+    self.memberships.find_by(project_id: project.id) != nil
+  end
+
 end
