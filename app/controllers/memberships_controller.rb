@@ -20,10 +20,12 @@ class MembershipsController < PrivateController
 
   def update
     @membership = Membership.find(params[:id])
-    if @membership.update(membership_params)
+    if @project.memberships.where(role: "owner").count > 1
+      @membership.update(membership_params)
       flash[:success] = "#{@membership.user.full_name} was successfully updated."
       redirect_to project_memberships_path(@project)
     else
+      flash[:danger] = "Projects must have at least one owner"
       render :index
     end
   end
