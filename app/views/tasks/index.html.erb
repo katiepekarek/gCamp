@@ -21,7 +21,7 @@
     <% @tasks.each do |task| %>
     <tr>
       <% if task.completed %>
-        <td><s><%= link_to task.description, project_task_path(@project, task) %><span class="badge">task.comment.count</span></s></td>
+        <td><s><%= link_to task.description, project_task_path(@project, task) %><span class="badge"><%= task.comments.count %></span></s></td>
       <% else %>
         <td><%= link_to task.description, project_task_path(@project, task) %>
           <span class="badge"><%= task.comments.count %></span>
