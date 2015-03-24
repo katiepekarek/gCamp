@@ -2,6 +2,8 @@ class ProjectsController <PrivateController
   before_action :authorize
   before_action :set_project, except: [:new, :create, :index]
   before_action :member_auth, except: [:new, :create, :index]
+  before_action :project_owner, only: [:edit, :update, :destroy]
+
   def index
     @projects = current_user.projects
   end
@@ -53,5 +55,13 @@ class ProjectsController <PrivateController
   def set_project
     @project = Project.find(params[:id])
   end
+
+  def project_owner
+    unless current_user.project_owner_verify(@project)
+      flash[:danger] = 'You do not have access'
+      redirect_to project_path(@project)
+    end
+  end
+
 
 end
