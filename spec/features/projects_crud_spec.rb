@@ -29,6 +29,16 @@ feature 'Existing users can CRUD Projects' do
     expect(page).to have_content 'Project was successfully created'
   end
 
+  scenario 'Non-members cannot access projects' do
+    project = Project.new(name: 'create great wall of china')
+    project.save!
+
+    sign_in_user
+    visit project_path(project)
+    expect(page).to have_content("You do not have access to that project")
+    expect(current_path).to eq(projects_path)
+    end
+
   xscenario 'user can edit project' do
     project = Project.new(name: 'create great wall of china')
     project.save!

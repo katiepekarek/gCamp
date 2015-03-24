@@ -22,15 +22,12 @@ class ProjectsController <PrivateController
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:success] = 'Project was successfully updated'
 
@@ -45,7 +42,6 @@ class ProjectsController <PrivateController
       flash[:success] = 'Project was successfully deleted'
 
       redirect_to projects_path
-
   end
 
   private
@@ -56,13 +52,6 @@ class ProjectsController <PrivateController
 
   def set_project
     @project = Project.find(params[:id])
-  end
-
-  def member_auth
-    unless current_user.project_member_verify(@project)
-      flash[:danger] = 'You do not have access to that project'
-      redirect_to projects_path
-    end
   end
 
 end
