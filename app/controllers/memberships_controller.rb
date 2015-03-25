@@ -33,7 +33,14 @@ class MembershipsController < PrivateController
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    if @project.memberships.where(role: "owner").count > 1
+    if current_user == @membership.user
+      @membership.destroy
+      flash[:success] = "#{@membership.user.full_name} was successfully removed"
+      redirect_to projects_path
+    elsif current_user != @membership.user
+      flash[:danger] = 'You do not have access'
+      redirect_to project_path(@project)
+    elsif @project.memberships.where(role: "owner").count > 1
       @membership.destroy
       flash[:success] = "#{@membership.user.full_name} was successfully removed"
       redirect_to project_memberships_path(@project)
