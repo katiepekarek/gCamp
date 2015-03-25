@@ -22,4 +22,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def project_owner
+    unless current_user.project_owner_verify(@project)
+      flash[:danger] = 'You do not have access'
+      redirect_to project_path(@project)
+    end
+  end
+
 end

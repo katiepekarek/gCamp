@@ -1,6 +1,7 @@
 class MembershipsController < PrivateController
   before_action :set_project
   before_action :member_auth
+  before_action :project_owner, except: [:index]
 
   def index
     @membership = @project.memberships.new
