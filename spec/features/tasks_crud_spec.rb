@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 feature 'Existing users CRUD tasks within projects' do
-  xscenario 'index lists all available tasks with description, due_date' do
-    project = Project.new(name: 'create great wall of china')
-    project.save!
+  scenario 'project owner index lists all available tasks with description, due_date' do
+    project = create_project(name: 'create great wall of china')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+    Membership.create!(user_id: user.id, project_id: project.id, role:"owner")
 
-    sign_in_user
+    sign_in(user)
     expect(current_path).to eq projects_path
 
     click_link '0'

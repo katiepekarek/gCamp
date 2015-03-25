@@ -1,20 +1,21 @@
 require 'rails_helper'
 
 feature 'Existing users can CRUD Projects' do
-  xscenario 'index lists all available projects by name' do
-    project = Project.new(name: 'create great wall of china')
-    project.save!
-    membership = Membership.new(name: 'create great wall of china')
-    project.save!
+  scenario 'index lists all available projects where user has a membership by name' do
+    project = create_project(name: 'create great wall of china')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+    Membership.create!(user_id: user.id, project_id: project.id, role:"owner")
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Projects'
     expect(page).to have_content "create great wall of china"
   end
 
-  xscenario 'user can create new project' do
-    sign_in_user
+  scenario 'user can create new project' do
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Projects'
     expect(page).to have_content "Home"
@@ -30,23 +31,26 @@ feature 'Existing users can CRUD Projects' do
   end
 
   scenario 'Non-members cannot access projects' do
-    project = Project.new(name: 'create great wall of china')
-    project.save!
+    project = create_project(name: 'create great wall of china')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
 
-    sign_in_user
+    sign_in(user)
     visit project_path(project)
     expect(page).to have_content("You do not have access to that project")
     expect(current_path).to eq(projects_path)
     end
 
-  xscenario 'user can edit project' do
-    project = Project.new(name: 'create great wall of china')
-    project.save!
+  scenario 'owner can edit project' do
+    project = create_project(name: 'create great wall of china')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+    Membership.create!(user_id: user.id, project_id: project.id, role:"owner")
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Projects'
-    click_link 'create great wall of china'
+    within '.dropdown' do
+      click_link 'create great wall of china'
+    end
     click_link 'Edit'
     fill_in :project_name, with: 'create great wall of china and fight huns'
     click_button 'Update Project'
@@ -54,14 +58,17 @@ feature 'Existing users can CRUD Projects' do
     expect(page).to have_content 'Project was successfully updated'
   end
 
-  xscenario 'user can delete project' do
-    project = Project.new(name: 'create great wall of china')
-    project.save!
+  scenario 'project owner can delete project' do
+    project = create_project(name: 'create great wall of china')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+    Membership.create!(user_id: user.id, project_id: project.id, role:"owner")
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Projects'
-    click_link 'create great wall of china'
+    within '.dropdown' do
+      click_link 'create great wall of china'
+    end
     click_link 'Delete'
     expect(page).to have_content 'Project was successfully deleted'
   end

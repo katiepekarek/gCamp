@@ -1,7 +1,7 @@
 class MembershipsController < PrivateController
   before_action :set_project
   before_action :member_auth
-  before_action :project_owner, except: [:index]
+  before_action :project_owner, except: [:index, :destroy]
 
   def index
     @membership = @project.memberships.new
@@ -34,8 +34,8 @@ class MembershipsController < PrivateController
   def destroy
     @membership = @project.memberships.find(params[:id])
     if @project.memberships.where(role: "owner").count > 1
-      membership.destroy
-      flash[:success] = "#{membership.user.full_name} was successfully removed"
+      @membership.destroy
+      flash[:success] = "#{@membership.user.full_name} was successfully removed"
       redirect_to project_memberships_path(@project)
     else
       flash[:danger] = "Projects must have at least one owner"

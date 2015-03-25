@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'users can CRUD Existing Users' do
   scenario 'users can see an index page with a list of users with name and email' do
-    user = User.new(first_name: 'Sam', last_name: 'Smith', email: 'grammy_winner@yahoo.com', password:'1234', password_confirmation: '1234')
-    user.save!
+    create_user(first_name: 'Sam', last_name: 'Smith',email: 'grammy_winner@yahoo.com', password: '1234', password_confirmation: '1234')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link "Users"
     expect(page).to have_content 'Sam Smith'
@@ -13,8 +13,9 @@ feature 'users can CRUD Existing Users' do
   end
 
   scenario 'user can add new user' do
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Users'
     click_link 'New User'
@@ -31,7 +32,9 @@ feature 'users can CRUD Existing Users' do
   end
 
   scenario 'user can edit user' do
-    sign_in_user
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Users'
     click_link 'Edit'
@@ -44,8 +47,9 @@ feature 'users can CRUD Existing Users' do
   end
 
   scenario 'user can delete user' do
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
 
-    sign_in_user
+    sign_in(user)
     expect(page).to have_content 'Charles Barkley'
     click_link 'Users'
     click_link 'Edit'
