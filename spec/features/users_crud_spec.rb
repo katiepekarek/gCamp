@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'users can CRUD Existing Users' do
-  scenario 'users can see an index page with a list of users with name and email' do
+  scenario 'users can see an index page with a list of users with name and on ly their own email' do
     create_user(first_name: 'Sam', last_name: 'Smith',email: 'grammy_winner@yahoo.com', password: '1234', password_confirmation: '1234')
     user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
 
@@ -9,7 +9,8 @@ feature 'users can CRUD Existing Users' do
     expect(page).to have_content 'Charles Barkley'
     click_link "Users"
     expect(page).to have_content 'Sam Smith'
-    expect(page).to have_content 'grammy_winner@yahoo.com'
+    expect(page).to_not have_content 'grammy_winner@yahoo.com'
+    expect(page).to have_content 'test2@success.com'
   end
 
   scenario 'user can add new user' do

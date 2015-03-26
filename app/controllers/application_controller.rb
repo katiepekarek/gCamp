@@ -29,4 +29,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user_or_admin(user)
+    user == current_user || current_user.admin
+  end
+
+  def access_error
+    unless current_user_or_admin(@user)
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
+  end
+
 end
