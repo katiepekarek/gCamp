@@ -15,13 +15,15 @@
     <% @users.each do |user| %>
       <tr>
       <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
-
       <td><a href= "mailto:<%= user.email %>"><%= user.email %></a></td>
 
-      <td class= "text-right">
-        <%= link_to 'Edit', edit_user_path(user), class:"btn btn-info" %>
-      </td>
-
+      <% if user == current_user %>
+        <td class= "text-right">
+          <%= link_to 'Edit', edit_user_path(user), class:"btn btn-info" %>
+        </td>
+      <% else %>
+        <td></td>
+      <% end %>
       </tr>
     <%end%>
   </tbody>

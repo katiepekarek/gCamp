@@ -35,7 +35,7 @@ class MembershipsController < PrivateController
     @membership = @project.memberships.find(params[:id])
     if current_user == @membership.user
       @membership.destroy
-      flash[:success] = "#{@membership.user.full_name} was successfully removed"
+      flash[:success] = "#{@membership.user.full_name} was                      successfully removed"
       redirect_to projects_path
     elsif current_user != @membership.user
       flash[:danger] = 'You do not have access'

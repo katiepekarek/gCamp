@@ -1,12 +1,13 @@
 class UsersController <PrivateController
   before_action :authorize
+  before_action :set_user, except: [:index, :new, :create]
+  before_action :verify_user_access, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -25,11 +26,9 @@ class UsersController <PrivateController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -38,7 +37,6 @@ class UsersController <PrivateController
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       flash[:success] = "User was successfully deleted."
 
@@ -49,7 +47,21 @@ class UsersController <PrivateController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    if current_user.admin
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def verify_user_access
+    unless current_user == @user
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
 end

@@ -1,7 +1,9 @@
 <div class= 'page-header'>
   <h1>
     <%= @user.first_name %> <%= @user.last_name %>
-    <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-info pull-right" %>
+    <% if current_user == @user %>
+      <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-info pull-right" %>
+    <% end %>
   </h1>
 </div>
 
