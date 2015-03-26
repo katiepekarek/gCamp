@@ -17,7 +17,9 @@
   <dd><%= @user.last_name %></dd>
 </dl>
 
-<dl class="dl-horizontal">
-  <dt>Email</dt>
-  <dd><a href= "mailto:<%= @user.email %>"><%= @user.email %></a></dd>
-</dl>
+<% if current_user == @user %>
+  <dl class="dl-horizontal">
+    <dt>Email</dt>
+    <dd><a href= "mailto:<%= @user.email %>"><%= @user.email %></a></dd>
+  </dl>
+<% end %>
