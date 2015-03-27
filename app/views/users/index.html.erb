@@ -8,6 +8,7 @@
         <th>Name</th>
         <th>Email</th>
         <th></th>
+        <th></th>
       </tr>
   </thead>
 
@@ -15,13 +16,21 @@
     <% @users.each do |user| %>
       <tr>
       <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
-      <% if user == current_user %>
+      <% if current_user.admin || user == current_user && current_user.memberships == user.memberships %>
         <td><a href= "mailto:<%= user.email %>"><%= user.email %></a></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
+      <% if current_user.admin %>
+        <td class= "text-right">
+          <%= link_to 'Edit', edit_user_path(user), class:"btn btn-info" %>
+        </td>
+      <% elsif user == current_user %>
         <td class= "text-right">
           <%= link_to 'Edit', edit_user_path(user), class:"btn btn-info" %>
         </td>
       <% else %>
-        <td></td>
         <td></td>
       <% end %>
       </tr>
