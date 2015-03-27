@@ -1,7 +1,7 @@
 class TasksController <PrivateController
   before_action :authorize
   before_action :set_project
-  before_action :member_auth
+  before_action :member_or_admin_auth
 
   def index
     @tasks = @project.tasks

@@ -1,7 +1,10 @@
 class MembershipsController < PrivateController
   before_action :set_project
-  before_action :member_auth
-  before_action :project_owner, except: [:index, :destroy]
+  before_action :set_membership, except: [:index, :create]
+  before_action :verify_ownership, only: [:update, :destroy]
+  before_action :member_or_admin_auth, except: [:destroy]
+  before_action :project_owner_or_admin, except: [:index, :destroy]
+  before_action :project_owner_or_admin_or_member, only: [:destroy]
 
   def index
     @membership = @project.memberships.new
@@ -20,32 +23,17 @@ class MembershipsController < PrivateController
   end
 
   def update
-    @membership = Membership.find(params[:id])
-    if @project.memberships.where(role: "owner").count > 1
-      @membership.update(membership_params)
+    if @membership.update(membership_params)
       flash[:success] = "#{@membership.user.full_name} was successfully updated."
       redirect_to project_memberships_path(@project)
     else
-      flash[:danger] = "Projects must have at least one owner"
       render :index
     end
   end
 
   def destroy
-    @membership = @project.memberships.find(params[:id])
-    if current_user == @membership.user
-      @membership.destroy
-      flash[:success] = "#{@membership.user.full_name} was                      successfully removed"
-      redirect_to projects_path
-    elsif current_user != @membership.user
-      flash[:danger] = 'You do not have access'
-      redirect_to project_path(@project)
-    elsif @project.memberships.where(role: "owner").count > 1
-      @membership.destroy
+    if @membership.destroy
       flash[:success] = "#{@membership.user.full_name} was successfully removed"
-      redirect_to project_memberships_path(@project)
-    else
-      flash[:danger] = "Projects must have at least one owner"
       redirect_to project_memberships_path(@project)
     end
   end
@@ -54,6 +42,10 @@ class MembershipsController < PrivateController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def set_membership
+    @membership = Membership.find(params[:id])
   end
 
   def membership_params

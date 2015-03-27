@@ -1,7 +1,7 @@
 class UsersController <PrivateController
   before_action :authorize
   before_action :set_user, except: [:index, :new, :create]
-  before_action :verify_user_access, only: [:edit, :update, :destroy]
+  before_action :verify_user_auth_access, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -58,8 +58,8 @@ class UsersController <PrivateController
     @user = User.find(params[:id])
   end
 
-  def verify_user_access
-    unless current_user == @user
+  def verify_user_auth_access
+    unless current_user == @user || current_user.admin
       render file: 'public/404.html', status: :not_found, layout: false
     end
   end

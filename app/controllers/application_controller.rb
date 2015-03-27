@@ -15,15 +15,26 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def member_auth
-    unless current_user.project_member_verify(@project)
+  def member_or_admin_auth
+    unless (current_user.project_member_verify(@project) || current_user.admin)
       flash[:danger] = 'You do not have access to that project'
       redirect_to projects_path
     end
   end
 
-  def project_owner
-    unless current_user.project_owner_verify(@project)
+  def project_owner_or_admin
+    unless (current_user.project_owner_verify(@project) || current_user.admin)
+      flash[:danger] = 'You do not have access'
+      redirect_to project_path(@project)
+    end
+  end
+
+  def project_owner_or_admin_or_member
+    if current_user.project_owner_verify(@project) || current_user.admin || current_user.project_member_verify(@project)
+      @membership.destroy
+      flash[:success] = "#{@membership.user.full_name} was                      successfully removed"
+      redirect_to projects_path
+    else
       flash[:danger] = 'You do not have access'
       redirect_to project_path(@project)
     end
@@ -36,6 +47,13 @@ class ApplicationController < ActionController::Base
   def access_error
     unless current_user_or_admin(@user)
       render file: 'public/404.html', status: :not_found, layout: false
+    end
+  end
+
+  def verify_ownership
+    if @project.memberships.where(role: "owner").count < 1 && @membership.role == "owner"
+      flash[:danger] = "Projects must have at least one owner"
+      redirect_to project_memberships_path(@project)
     end
   end
 

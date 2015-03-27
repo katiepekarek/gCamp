@@ -1,8 +1,8 @@
 class ProjectsController <PrivateController
   before_action :authorize
   before_action :set_project, except: [:new, :create, :index]
-  before_action :member_auth, except: [:new, :create, :index]
-  before_action :project_owner, only: [:edit, :update, :destroy]
+  before_action :member_or_admin_auth, except: [:new, :create, :index]
+  before_action :project_owner_or_admin, only: [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
