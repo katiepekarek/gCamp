@@ -16,7 +16,7 @@
     <% @users.each do |user| %>
       <tr>
       <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
-      <% if current_user.admin || user == current_user && current_user.memberships == user.memberships %>
+      <% if current_user.admin || current_user.project_member_of(user) %>
         <td><a href= "mailto:<%= user.email %>"><%= user.email %></a></td>
       <% else %>
         <td></td>

@@ -17,7 +17,7 @@
   <dd><%= @user.last_name %></dd>
 </dl>
 
-<% if current_user == @user || current_user.admin %>
+<% if current_user.admin || current_user.project_member_of(@user)%>
   <dl class="dl-horizontal">
     <dt>Email</dt>
     <dd><a href= "mailto:<%= @user.email %>"><%= @user.email %></a></dd>

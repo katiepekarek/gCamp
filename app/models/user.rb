@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def project_owner_verify(project)
     self.memberships.find_by(project_id: project.id).role == "owner"
   end
+
+  def project_member_of(user)
+    user.projects.map(&:users).flatten.include?(self)
+  end
 end
