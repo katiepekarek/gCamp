@@ -2,7 +2,7 @@
   <p>
     <h1>
       <%= @project.name %>
-      <% if current_user.project_owner_verify(@project) %>
+      <% if current_user.project_owner_verify(@project) || current_user.admin %>
       <div class= 'pull-right'>
         <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-info'%>
       </div>
@@ -19,7 +19,7 @@
 <p><%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %></p>
 <p><%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project) %></p>
 
-<% if current_user.project_owner_verify(@project) %>
+<% if current_user.project_owner_verify(@project) || current_user.admin %>
   <div class= "well">
     <h3>Delete</h3>
       <p><%= "Deleting this project will also delete #{pluralize(@project.memberships.count, 'membership').sub(/d+s/, "") }, #{pluralize(@project.tasks.count, 'task').sub(/d+s/, "")} and associated comments" %><p>

@@ -1,5 +1,5 @@
 class UsersController <PrivateController
-  before_action :authorize
+  skip_before_action :set_project
   before_action :set_user, except: [:index, :new, :create]
   before_action :verify_user_auth_access, only: [:edit, :update, :destroy]
 

@@ -1,5 +1,4 @@
 class MembershipsController < PrivateController
-  before_action :set_project
   before_action :set_membership, except: [:index, :create]
   before_action :verify_ownership, only: [:update, :destroy]
   before_action :member_or_admin_auth, except: [:destroy]

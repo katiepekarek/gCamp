@@ -1,11 +1,11 @@
 class ProjectsController <PrivateController
-  before_action :authorize
-  before_action :set_project, except: [:new, :create, :index]
+  skip_before_action :set_project, only: [:new, :create, :index]
   before_action :member_or_admin_auth, except: [:new, :create, :index]
   before_action :project_owner_or_admin, only: [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
+    @admin_projects = Project.all
   end
 
   def new
@@ -50,9 +50,5 @@ class ProjectsController <PrivateController
 
   def project_params
     params.require(:project).permit(:name)
-  end
-
-  def set_project
-    @project = Project.find(params[:id])
   end
 end
