@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_ownership
-    if @project.memberships.where(role: "owner").count < 1 && @membership.role == "owner"
+    if @project.memberships.where(role: "owner").count <= 1 && @membership.role == "owner"
       flash[:danger] = "Projects must have at least one owner"
       redirect_to project_memberships_path(@project)
     end
