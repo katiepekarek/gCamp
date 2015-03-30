@@ -32,7 +32,7 @@ feature 'Existing users can CRUD Projects' do
 
   scenario 'Non-members cannot access projects' do
     project = create_project(name: 'create great wall of china')
-    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234')
+    user = create_user(first_name: 'Charles', last_name: 'Barkley',email: 'test2@success.com', password: '1234', password_confirmation: '1234', admin: false)
 
     sign_in(user)
     visit project_path(project)
