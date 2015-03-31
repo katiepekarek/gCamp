@@ -33,7 +33,7 @@ class MembershipsController < PrivateController
   def destroy
     if @membership.destroy
       flash[:success] = "#{@membership.user.full_name} was successfully removed"
-      redirect_to project_memberships_path(@project)
+      redirect_to projects_path
     end
   end
 
