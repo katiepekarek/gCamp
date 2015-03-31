@@ -114,7 +114,7 @@ describe ProjectsController do
       membership = create_membership(project_id: project.id, user_id: user.id, role: "member")
       patch :update, id: project, project: {name: 'Book concert'}
       expect(response).to redirect_to project_path(project)
-      #expect(flash[:notice]).to eq "You do not have access"
+      expect(flash[:danger]).to eq "You do not have access"
     end
   end
 

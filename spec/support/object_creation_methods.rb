@@ -36,3 +36,9 @@ def create_ownership(options={})
 
   Membership.create!(defaults.merge(options))
 end
+
+def create_task(options={})
+  defaults = {description: 'Floss teeth', due_date: '2016-03-15', completed: false, project_id: create_project}
+
+  Task.create!(defaults.merge(options))
+end
