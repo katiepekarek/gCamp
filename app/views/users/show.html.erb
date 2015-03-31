@@ -8,12 +8,12 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt>First name</dt>
+  <dt>First Name</dt>
   <dd><%= @user.first_name %></dd>
 </dl>
 
 <dl class="dl-horizontal">
-  <dt>Last name</dt>
+  <dt>Last Name</dt>
   <dd><%= @user.last_name %></dd>
 </dl>
 
@@ -23,3 +23,8 @@
     <dd><a href= "mailto:<%= @user.email %>"><%= @user.email %></a></dd>
   </dl>
 <% end %>
+
+<dl class="dl-horizontal">
+  <dt>Pivotal Tracker Token</dt>
+  <dd><%= @user.pivotal_tracker_token.gsub(/.(?<=.....)/, '*') %></dd>
+</dl>
