@@ -17,15 +17,15 @@ feature 'Existing users CRUD tasks within projects' do
     expect(page).to have_content 'Description can\'t be blank'
 
     fill_in :task_description, with: 'Hard Task'
-    fill_in :task_due_date, with: '2015-03-15'
+    fill_in :task_due_date, with: '2034-03-15'
     click_button 'Create Task'
 
     expect(page).to have_content 'Task was successfully created.'
     expect(page).to have_content 'Hard Task'
-    expect(page).to have_content '03/15/2015'
+    expect(page).to have_content '03/15/2034'
 
     click_link 'Hard Task'
-    expect(page).to have_content 'Due date: 03/15/2015'
+    expect(page).to have_content 'Due date: 03/15/2034'
 
     click_link "Edit"
 
