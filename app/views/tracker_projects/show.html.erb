@@ -1,0 +1,29 @@
+<div class= 'page-header'>
+  <div class='pull-right'>(showing first 500)</div>
+  <h1>
+    <%= "Stories for #{@tracker_project}" %>
+  </h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Story</th>
+      <th>Estimate</th>
+      <th>Labels</th>
+      <th>Current State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if current_user.pivotal_tracker_token %>
+      <% @tracker_stories.first(500).each do |story| %>
+        <tr>
+          <td><%= link_to "#{story[:name]}", story[:url]  %></td>
+          <td><%= story[:estimate] %></td>
+          <td><%= story[:labels].map { |label| label[:name] }.join(", ") %></td>
+          <td><%= story[:current_state] %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

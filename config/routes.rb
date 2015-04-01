@@ -15,12 +15,10 @@ Rails.application.routes.draw do
     resources :memberships, only: [:index, :create, :update, :destroy]
   end
 
+  resources :tracker_projects 
   resources :tasks, only: [] do
     resources :comments, only: [:create]
   end
-  #map.resources :tasks do |task|
-  #  task.resources :comments, :name_prefix => "projects_"
-  #end
 end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

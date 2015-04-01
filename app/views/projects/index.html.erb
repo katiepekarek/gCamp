@@ -43,7 +43,7 @@
     <% if current_user.pivotal_tracker_token %>
       <% @tracker_projects.each do |project| %>
       <tr>
-        <td><%= project[:name] %></td>
+        <td><%= link_to "#{project[:name]}", tracker_project_path( project[:id], project_name: project[:name]) %></td>
       </tr>
       <% end %>
     <% end %>
