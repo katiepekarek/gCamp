@@ -26,7 +26,9 @@
 
 <dl class="dl-horizontal">
   <dt>Pivotal Tracker Token</dt>
-    <% if current_user.pivotal_tracker_token %>
+    <% if current_user.pivotal_tracker_token && @user.pivotal_tracker_token %>
       <dd><%= @user.pivotal_tracker_token.gsub(/.(?<=.....)/, '*') %></dd>
+    <% elsif @user.pivotal_tracker_token == nil %>
+      <dd></dd>
     <% end %>
 </dl>
