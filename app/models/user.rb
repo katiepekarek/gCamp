@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
 
   has_many :memberships, dependent: :destroy
   has_many :projects, :through => :memberships
@@ -19,7 +18,9 @@ class User < ActiveRecord::Base
   end
 
   def project_owner_verify(project)
-    self.memberships.find_by(project_id: project.id).role == "owner"
+    unless self.admin
+      self.memberships.find_by(project_id: project.id).role == "owner"
+    end
   end
 
   def project_member_of(user)
