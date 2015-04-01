@@ -27,5 +27,25 @@
       <% end %>
     <% end %>
   </tbody>
+</table>
 
+<div class= 'page-header'>
+  <p><h1>Pivotal Tracker Projects</h1></p>
+</div>
+
+<table class= 'table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if current_user.pivotal_tracker_token %>
+      <% @tracker_projects.each do |project| %>
+      <tr>
+        <td><%= project[:name] %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
 </table>

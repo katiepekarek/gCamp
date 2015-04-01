@@ -1,2 +1,2 @@
-class TrackerProjects
+class TrackerProjectsController <PrivateController
 end

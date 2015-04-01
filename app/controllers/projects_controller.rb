@@ -6,6 +6,10 @@ class ProjectsController <PrivateController
   def index
     @projects = current_user.projects
     @admin_projects = Project.all
+    tracker_api = TrackerAPI.new
+    if current_user.pivotal_tracker_token
+      @tracker_projects = tracker_api.projects(current_user.pivotal_tracker_token)
+    end
   end
 
   def new
