@@ -29,23 +29,23 @@
   </tbody>
 </table>
 
-<div class= 'page-header'>
-  <p><h1>Pivotal Tracker Projects</h1></p>
-</div>
+<% if current_user.pivotal_tracker_token && @tracker_projects != nil%>
+  <div class= 'page-header'>
+    <p><h1>Pivotal Tracker Projects</h1></p>
+  </div>
 
-<table class= 'table'>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if current_user.pivotal_tracker_token %>
+  <table class= 'table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @tracker_projects.each do |project| %>
       <tr>
         <td><%= link_to "#{project[:name]}", tracker_project_path( project[:id], project_name: project[:name]) %></td>
       </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
