@@ -9,6 +9,10 @@ class ProjectsController <PrivateController
     tracker_api = TrackerAPI.new
     if current_user.pivotal_tracker_token && tracker_api.projects(current_user.pivotal_tracker_token)
       @tracker_projects = tracker_api.projects(current_user.pivotal_tracker_token)
+    elsif
+      !current_user.pivotal_tracker_token
+    else
+      flash[:danger] = 'Pivotal Tracker Token is Invalid'
     end
   end
 
