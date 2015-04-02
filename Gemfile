@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails_12factor', group: :production
 
 gem 'responders', '~> 2.0'
-
+gem 'haml', '~> 4.0.6'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'rails', '4.2.0'
 gem 'faraday', '~> 0.9.0'
